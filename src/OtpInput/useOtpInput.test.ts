@@ -5,7 +5,7 @@ import { OtpInputProps } from "./OtpInput.types";
 import { useOtpInput } from "./useOtpInput";
 
 const renderUseOtInput = (props?: Partial<OtpInputProps>) =>
-  renderHook(() => useOtpInput({ numberOfDigits: 6, ...props }));
+  renderHook(() => useOtpInput({ numberOfCharacters: 6, ...props }));
 
 describe("useOtpInput", () => {
   afterEach(() => {
@@ -47,7 +47,7 @@ describe("useOtpInput", () => {
     });
   });
 
-  test("setTextWithRef() should only call setText the first 'numberOfDigits' characters", () => {
+  test("setTextWithRef() should only call setText the first 'numberOfCharacters' characters", () => {
     jest.spyOn(React, "useState").mockImplementation(() => ["", jest.fn()]);
     const { result } = renderUseOtInput();
     result.current.forms.setTextWithRef("123456789");

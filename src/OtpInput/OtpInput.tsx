@@ -12,7 +12,8 @@ export const OtpInput = forwardRef<OtpInputRef, OtpInputProps>((props, ref) => {
     forms: { setTextWithRef },
   } = useOtpInput(props);
   const {
-    numberOfDigits,
+    numberOfCharacters,
+    inputMode,
     autoFocus = true,
     hideStick,
     focusColor = "#A4D0A4",
@@ -34,7 +35,7 @@ export const OtpInput = forwardRef<OtpInputRef, OtpInputProps>((props, ref) => {
   return (
     <View style={[styles.container, containerStyle]}>
       <View style={[styles.inputsContainer, inputsContainerStyle]}>
-        {Array(numberOfDigits)
+        {Array(numberOfCharacters)
           .fill(0)
           .map((_, index) => {
             const char = text[index];
@@ -72,8 +73,8 @@ export const OtpInput = forwardRef<OtpInputRef, OtpInputProps>((props, ref) => {
       <TextInput
         value={text}
         onChangeText={handleTextChange}
-        maxLength={numberOfDigits}
-        inputMode="numeric"
+        maxLength={numberOfCharacters}
+        inputMode={inputMode}
         ref={inputRef}
         autoFocus={autoFocus}
         style={styles.hiddenInput}

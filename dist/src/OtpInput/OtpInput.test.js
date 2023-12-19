@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const react_native_1 = require("@testing-library/react-native");
 const React = require("react");
 const OtpInput_1 = require("./OtpInput");
-const renderOtpInput = (props) => (0, react_native_1.render)(<OtpInput_1.OtpInput numberOfDigits={6} {...props}/>);
+const renderOtpInput = (props) => (0, react_native_1.render)(<OtpInput_1.OtpInput numberOfCharacters={6} {...props}/>);
 describe("OtpInput", () => {
     describe("UI", () => {
         test("should render correctly", () => {
@@ -51,10 +51,10 @@ describe("OtpInput", () => {
             expect(inputs[0]).toHaveStyle({ borderColor: "#fff", backgroundColor: "green" });
         });
         // Test if the number of rendered inputs is equal to the number of digits
-        test.each([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])("should render the correct number of inputs: %i", (numberOfDigits) => {
-            renderOtpInput({ numberOfDigits: numberOfDigits });
+        test.each([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])("should render the correct number of inputs: %i", (numberOfCharacters) => {
+            renderOtpInput({ numberOfCharacters: numberOfCharacters });
             const inputs = react_native_1.screen.getAllByTestId("otp-input");
-            expect(inputs).toHaveLength(numberOfDigits);
+            expect(inputs).toHaveLength(numberOfCharacters);
         });
     });
     describe("Logic", () => {
@@ -75,7 +75,7 @@ describe("OtpInput", () => {
         });
         test("ref clear() should clear input", () => {
             const ref = React.createRef();
-            (0, react_native_1.render)(<OtpInput_1.OtpInput ref={ref} numberOfDigits={6}/>);
+            (0, react_native_1.render)(<OtpInput_1.OtpInput ref={ref} numberOfCharacters={6}/>);
             const otp = "1";
             const input = react_native_1.screen.getByTestId("otp-input-hidden");
             react_native_1.fireEvent.changeText(input, otp);
@@ -86,16 +86,16 @@ describe("OtpInput", () => {
         });
         test("ref setValue() should set input value", () => {
             const ref = React.createRef();
-            (0, react_native_1.render)(<OtpInput_1.OtpInput ref={ref} numberOfDigits={6}/>);
+            (0, react_native_1.render)(<OtpInput_1.OtpInput ref={ref} numberOfCharacters={6}/>);
             const otp = "1";
             (0, react_native_1.act)(() => {
                 ref.current?.setValue(otp);
             });
             expect(react_native_1.screen.getByText("1")).toBeTruthy();
         });
-        test('ref setValue() should set only the first "numberOfDigits" characters', () => {
+        test('ref setValue() should set only the first "numberOfCharacters" characters', () => {
             const ref = React.createRef();
-            (0, react_native_1.render)(<OtpInput_1.OtpInput ref={ref} numberOfDigits={4}/>);
+            (0, react_native_1.render)(<OtpInput_1.OtpInput ref={ref} numberOfCharacters={4}/>);
             const otp = "123456";
             (0, react_native_1.act)(() => {
                 ref.current?.setValue(otp);

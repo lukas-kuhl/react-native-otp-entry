@@ -1,7 +1,8 @@
 import { ColorValue, TextStyle, ViewStyle } from "react-native";
 
 export interface OtpInputProps {
-  numberOfDigits: number;
+  numberOfCharacters: number;
+  inputMode?: "numeric" | "text";
   autoFocus?: boolean;
   focusColor?: ColorValue;
   onTextChange?: (text: string) => void;

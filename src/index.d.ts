@@ -10,8 +10,12 @@ declare module "OTPInput" {
     /**
      * The number of digits to be displayed in the OTP entry.
      */
-    numberOfDigits: number;
+    numberOfCharacters: number;
 
+    /**
+     * inputmode for determing which keyboard to show.
+     */
+    inputMode: "numeric" | "text"
     /**
      * The color of the input field border and stick when it is focused.
      */

@@ -41,14 +41,14 @@ yarn add react-native-otp-entry
 2. Render the `OtpInput` component in your screen/component:
 
    ```jsx
-   <OtpInput numberOfDigits={6} onTextChange={(text) => console.log(text)} />
+   <OtpInput numberOfCharacters={6} onTextChange={(text) => console.log(text)} />
    ```
 
 3. Customize the styling as per your requirements:
 
    ```javascript
    <OtpInput
-     numberOfDigits={6}
+     numberOfCharacters={6}
      focusColor="green"
      focusStickBlinkingDuration={500}
      onTextChange={(text) => console.log(text)}
@@ -70,7 +70,7 @@ The `react-native-otp-entry` component accepts the following props:
 
 | Prop                         | Type                   | Description                                                                                                    |
 | ---------------------------- | ---------------------- | -------------------------------------------------------------------------------------------------------------- |
-| `numberOfDigits`             | number                 | The number of digits to be displayed in the OTP entry.                                                         |
+| `numberOfCharacters`             | number                 | The number of digits to be displayed in the OTP entry.                                                         |
 | `autoFocus`                  | boolean                | Set autofocus.                                                                                                 |
 | `focusColor`                 | ColorValue             | The color of the input field border and stick when it is focused.                                              |
 | `onTextChange`               | (text: string) => void | A callback function is invoked when the OTP text changes. It receives the updated text as an argument.         |

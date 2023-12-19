@@ -4,7 +4,7 @@ import { OtpInput } from "./OtpInput";
 import { OtpInputProps, OtpInputRef } from "./OtpInput.types";
 
 const renderOtpInput = (props?: Partial<OtpInputProps>) =>
-  render(<OtpInput numberOfDigits={6} {...props} />);
+  render(<OtpInput numberOfCharacters={6} {...props} />);
 
 describe("OtpInput", () => {
   describe("UI", () => {
@@ -73,12 +73,12 @@ describe("OtpInput", () => {
     // Test if the number of rendered inputs is equal to the number of digits
     test.each([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])(
       "should render the correct number of inputs: %i",
-      (numberOfDigits) => {
-        renderOtpInput({ numberOfDigits: numberOfDigits });
+      (numberOfCharacters) => {
+        renderOtpInput({ numberOfCharacters: numberOfCharacters });
 
         const inputs = screen.getAllByTestId("otp-input");
 
-        expect(inputs).toHaveLength(numberOfDigits);
+        expect(inputs).toHaveLength(numberOfCharacters);
       }
     );
   });
@@ -105,7 +105,7 @@ describe("OtpInput", () => {
     test("ref clear() should clear input", () => {
       const ref = React.createRef<OtpInputRef>();
 
-      render(<OtpInput ref={ref} numberOfDigits={6} />);
+      render(<OtpInput ref={ref} numberOfCharacters={6} />);
       const otp = "1";
 
       const input = screen.getByTestId("otp-input-hidden");
@@ -120,7 +120,7 @@ describe("OtpInput", () => {
     test("ref setValue() should set input value", () => {
       const ref = React.createRef<OtpInputRef>();
 
-      render(<OtpInput ref={ref} numberOfDigits={6} />);
+      render(<OtpInput ref={ref} numberOfCharacters={6} />);
       const otp = "1";
 
       act(() => {
@@ -129,10 +129,10 @@ describe("OtpInput", () => {
       expect(screen.getByText("1")).toBeTruthy();
     });
 
-    test('ref setValue() should set only the first "numberOfDigits" characters', () => {
+    test('ref setValue() should set only the first "numberOfCharacters" characters', () => {
       const ref = React.createRef<OtpInputRef>();
 
-      render(<OtpInput ref={ref} numberOfDigits={4} />);
+      render(<OtpInput ref={ref} numberOfCharacters={4} />);
       const otp = "123456";
 
       act(() => {
